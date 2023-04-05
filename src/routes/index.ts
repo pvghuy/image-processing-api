@@ -55,8 +55,8 @@ routes.get('/', async (req, res): Promise<void> => {
         await resize.getExistResizedImagePath(params);
       res.sendFile(path.resolve(existResizedImagePath));
     }
-  } catch (err: any) {
-    res.json({ message: err.message });
+  } catch (err: unknown) {
+    res.json({ message: (err as { message: string }).message });
   }
 });
 
